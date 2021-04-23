@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">CoctailsRecipesApp</string>
+    <string name="allCoctails">All</string>
+    <string name="coctailsIngredients">Ingredients</string>
+    <string name="randomCoctail">Random</string>
+    <string name="favouriteCoctails">Favourite</string>
 </resources>
