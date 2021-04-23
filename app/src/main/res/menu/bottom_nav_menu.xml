@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/allCoctails"
+    <item android:id="@+id/allCoctailsFragment"
         android:title="@string/allCoctails"
         android:icon="@drawable/ic_all_coctails" />
 
-    <item android:id="@+id/coctailsIngredients"
+    <item android:id="@+id/ingredientsFragment"
         android:title="@string/coctailsIngredients"
         android:icon="@drawable/ic_ingredients" />
 
-    <item android:id="@+id/randomCoctail"
+    <item android:id="@+id/randomCoctailFragment"
         android:title="@string/randomCoctail"
         android:icon="@drawable/ic_random_coctail" />
 
-    <item android:id="@+id/favouriteCoctails"
+    <item android:id="@+id/favouriteCoctailsFragment"
         android:title="@string/favouriteCoctails"
         android:icon="@drawable/ic_favourite" />
 
