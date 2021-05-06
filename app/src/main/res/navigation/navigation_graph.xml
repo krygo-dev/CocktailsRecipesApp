@@ -3,30 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
-    app:startDestination="@id/allCoctailsFragment">
-
-    <fragment
-        android:id="@+id/allCoctailsFragment"
-        android:name="com.krygodev.coctailsrecipesapp.fragments.AllCoctailsFragment"
-        android:label="AllCoctailsFragment"
-        tools:layout="@layout/fragment_all_coctails"/>
+    app:startDestination="@id/categoriesFragment">
 
     <fragment
         android:id="@+id/ingredientsFragment"
-        android:name="com.krygodev.coctailsrecipesapp.fragments.IngredientsFragment"
+        android:name="com.krygodev.coctailsrecipesapp.ui.fragments.IngredientsFragment"
         android:label="IngredientsFragment"
         tools:layout="@layout/fragment_ingredients"/>
 
     <fragment
         android:id="@+id/randomCoctailFragment"
-        android:name="com.krygodev.coctailsrecipesapp.fragments.RandomCoctailFragment"
+        android:name="com.krygodev.coctailsrecipesapp.ui.fragments.RandomCoctailFragment"
         android:label="RandomCoctailFragment"
         tools:layout="@layout/fragment_random_coctail"/>
 
     <fragment
         android:id="@+id/favouriteCoctailsFragment"
-        android:name="com.krygodev.coctailsrecipesapp.fragments.FavouriteCoctailsFragment"
+        android:name="com.krygodev.coctailsrecipesapp.ui.fragments.FavouriteCoctailsFragment"
         android:label="FavouriteCoctailsFragment"
         tools:layout="@layout/fragment_favourite_coctails"/>
+
+    <fragment
+        android:id="@+id/categoriesFragment"
+        android:name="com.krygodev.coctailsrecipesapp.ui.fragments.CategoriesFragment"
+        android:label="CategoriesFragment"
+        tools:layout="@layout/fragment_categories" />
 
 </navigation>

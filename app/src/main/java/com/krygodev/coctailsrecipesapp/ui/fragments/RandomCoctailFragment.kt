@@ -1,4 +1,4 @@
-package com.krygodev.coctailsrecipesapp.fragments
+package com.krygodev.coctailsrecipesapp.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater

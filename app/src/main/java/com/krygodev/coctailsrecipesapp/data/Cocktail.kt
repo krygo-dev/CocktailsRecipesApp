@@ -1,6 +1,6 @@
 package com.krygodev.coctailsrecipesapp.data
 
-data class Drink(
+data class Cocktail(
     val dateModified: String,
     val idDrink: String,
     val strAlcoholic: String,
@@ -22,7 +22,7 @@ data class Drink(
     val strIngredient15: Any,
     val strIngredient2: String,
     val strIngredient3: String,
-    val strIngredient4: String,
+    val strIngredient4: Any,
     val strIngredient5: Any,
     val strIngredient6: Any,
     val strIngredient7: Any,
@@ -42,9 +42,9 @@ data class Drink(
     val strMeasure13: Any,
     val strMeasure14: Any,
     val strMeasure15: Any,
-    val strMeasure2: String,
-    val strMeasure3: String,
-    val strMeasure4: String,
+    val strMeasure2: Any,
+    val strMeasure3: Any,
+    val strMeasure4: Any,
     val strMeasure5: Any,
     val strMeasure6: Any,
     val strMeasure7: Any,
