@@ -5,10 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.krygodev.coctailsrecipesapp.R
+import com.krygodev.coctailsrecipesapp.ui.IngredientsViewModelProviderFactory
+import com.krygodev.coctailsrecipesapp.ui.activities.StartupActivity
+import com.krygodev.coctailsrecipesapp.ui.viewmodels.IngredientsViewModel
 import kotlinx.android.synthetic.main.fragment_ingredients.*
 
 class IngredientsFragment : Fragment() {
+
+    lateinit var viewModel: IngredientsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -20,6 +26,9 @@ class IngredientsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val viewModelProviderFactory = IngredientsViewModelProviderFactory((activity as StartupActivity).repository)
+        viewModel = ViewModelProvider(this, viewModelProviderFactory).get(IngredientsViewModel::class.java)
 
         ingredientsSearchView.apply {
             onActionViewExpanded()

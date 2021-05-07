@@ -1,6 +1,14 @@
 package com.krygodev.coctailsrecipesapp.data
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(
+    tableName = "cocktails"
+)
 data class Cocktail(
+    @PrimaryKey(autoGenerate = true)
+    var id: Int? = null,
     val dateModified: String,
     val idDrink: String,
     val strAlcoholic: String,

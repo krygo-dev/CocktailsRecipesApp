@@ -7,4 +7,5 @@
     <string name="search">Search</string>
     <string name="noFilter">No filter</string>
     <string name="filterRecipes">Filter recipes</string>
+    <string name="placeholder">Placeholder</string>
 </resources>
