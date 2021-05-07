@@ -1,4 +1,4 @@
-package com.krygodev.coctailsrecipesapp.ui
+package com.krygodev.coctailsrecipesapp.ui.viewmodelsproviders
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

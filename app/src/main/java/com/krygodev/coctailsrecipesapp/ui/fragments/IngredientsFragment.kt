@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.krygodev.coctailsrecipesapp.R
-import com.krygodev.coctailsrecipesapp.ui.IngredientsViewModelProviderFactory
+import com.krygodev.coctailsrecipesapp.ui.viewmodelsproviders.IngredientsViewModelProviderFactory
 import com.krygodev.coctailsrecipesapp.ui.activities.StartupActivity
 import com.krygodev.coctailsrecipesapp.ui.viewmodels.IngredientsViewModel
 import kotlinx.android.synthetic.main.fragment_ingredients.*
