@@ -36,14 +36,24 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>
         )
     }
 
+    override fun getItemCount(): Int {
+        return differ.currentList.size
+    }
+    
+    private var onItemClickListener: ((Category) -> Unit)? = null
+
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         val category = differ.currentList[position]
         holder.itemView.apply {
             categoryNameTextView.text = category.strCategory
+
+            setOnClickListener {
+                onItemClickListener?.let { it(category) }
+            }
         }
     }
 
-    override fun getItemCount(): Int {
-        return differ.currentList.size
+    fun setOnItemClickListener(listener: (Category) -> Unit) {
+        onItemClickListener = listener
     }
 }

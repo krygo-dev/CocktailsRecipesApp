@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardBackgroundColor="@color/colorBackground">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cocktailContraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorAccent">
+        android:layout_height="wrap_content">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/cocktailImageImageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minWidth="100dp"
-            android:minHeight="100dp"
-            android:background="@color/black"
+            android:minWidth="150dp"
+            android:minHeight="150dp"
+            android:background="@drawable/ic_image_loading"
             android:layout_margin="20dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/cocktailNameTextView"
@@ -34,7 +33,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginBottom="20dp"
             android:text="@string/placeholder"
-            android:textSize="25sp" />
+            android:textAlignment="center"
+            android:maxWidth="150dp"
+            android:textSize="20sp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -21,12 +21,37 @@
         android:id="@+id/favouriteCoctailsFragment"
         android:name="com.krygodev.coctailsrecipesapp.ui.fragments.FavouriteCoctailsFragment"
         android:label="FavouriteCoctailsFragment"
-        tools:layout="@layout/fragment_favourite_coctails"/>
+        tools:layout="@layout/fragment_favourite_coctails">
+        <action
+            android:id="@+id/action_favouriteCoctailsFragment_to_cocktailDetailsFragment"
+            app:destination="@id/cocktailDetailsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/categoriesFragment"
         android:name="com.krygodev.coctailsrecipesapp.ui.fragments.CategoriesFragment"
         android:label="CategoriesFragment"
-        tools:layout="@layout/fragment_categories" />
+        tools:layout="@layout/fragment_categories" >
+        <action
+            android:id="@+id/action_categoriesFragment_to_allCocktailsFragment"
+            app:destination="@id/allCocktailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/allCocktailsFragment"
+        android:name="com.krygodev.coctailsrecipesapp.ui.fragments.AllCocktailsFragment"
+        android:label="AllCocktailsFragment"
+        tools:layout="@layout/fragment_all_coctails">
+        <action
+            android:id="@+id/action_allCocktailsFragment_to_cocktailDetailsFragment"
+            app:destination="@id/cocktailDetailsFragment" />
+        <argument
+            android:name="categoryName"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/cocktailDetailsFragment"
+        android:name="com.krygodev.coctailsrecipesapp.ui.fragments.CocktailDetailsFragment"
+        android:label="CocktailDetailsFragment"
+        tools:layout="@layout/fragment_cocktail_details"/>
 
 </navigation>

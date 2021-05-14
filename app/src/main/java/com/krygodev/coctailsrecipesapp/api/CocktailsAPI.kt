@@ -16,7 +16,7 @@ interface CocktailsAPI {
         category: String = "list"
     ): Response<AllCategories>
 
-    @GET("api/json/v1/1/list.php?c=list")
+    @GET("api/json/v1/1//filter.php")
     suspend fun getCocktailsFromCategory(
         @Query("c")
         category: String
@@ -37,7 +37,7 @@ interface CocktailsAPI {
         cocktailID: Int
     ): Response<AllCocktails>
 
-    @GET("api/json/v1/1/list.php?i=list")
+    @GET("api/json/v1/1/list.php")
     suspend fun getAllIngredients(
         @Query("i")
         ingredients: String = "list"

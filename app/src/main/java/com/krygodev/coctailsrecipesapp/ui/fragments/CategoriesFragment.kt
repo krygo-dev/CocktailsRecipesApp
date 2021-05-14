@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.krygodev.coctailsrecipesapp.R
 import com.krygodev.coctailsrecipesapp.adapters.CategoryAdapter
@@ -38,6 +38,13 @@ class CategoriesFragment : Fragment() {
         val viewModelProviderFactory = CategoriesViewModelProviderFactory((activity as StartupActivity).repository)
         viewModel = ViewModelProvider(this, viewModelProviderFactory).get(CategoriesViewModel::class.java)
         setupRecyclerView()
+
+        categoryAdapter.setOnItemClickListener { category ->
+            val bundle = Bundle().apply {
+                putString("categoryName", category.strCategory)
+            }
+            findNavController().navigate(R.id.action_categoriesFragment_to_allCocktailsFragment, bundle)
+        }
 
         viewModel.categories.observe(viewLifecycleOwner, { response ->
             when (response) {

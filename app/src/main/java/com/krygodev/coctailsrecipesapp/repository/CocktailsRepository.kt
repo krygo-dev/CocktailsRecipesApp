@@ -9,4 +9,6 @@ class CocktailsRepository(
     val db: CocktailsDatabase
 ) {
     suspend fun getAllCategories() = RetrofitInstance.api.getAllCategories()
+
+    suspend fun getCocktailsFromCategory(category: String) = RetrofitInstance.api.getCocktailsFromCategory(category)
 }
