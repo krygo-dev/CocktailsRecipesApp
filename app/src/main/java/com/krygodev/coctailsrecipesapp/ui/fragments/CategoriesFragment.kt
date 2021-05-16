@@ -51,6 +51,7 @@ class CategoriesFragment : Fragment() {
                 is Resource.Success -> {
                     response.data?.let { categoryResponse ->
                         Log.d(TAG, "Success")
+                        categoriesProgressIndicator.visibility = View.INVISIBLE
                         categoryAdapter.differ.submitList(categoryResponse.drinks)
                     }
                 }
@@ -59,7 +60,10 @@ class CategoriesFragment : Fragment() {
                         Log.e(TAG, "An error occured: $errorMessage")
                     }
                 }
-                is Resource.Loading -> Log.d(TAG, "Loading...")
+                is Resource.Loading -> {
+                    Log.d(TAG, "Loading...")
+                    categoriesProgressIndicator.visibility = View.VISIBLE
+                }
             }
         })
 

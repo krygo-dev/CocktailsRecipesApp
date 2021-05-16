@@ -10,9 +10,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.krygodev.coctailsrecipesapp.R
 import com.krygodev.coctailsrecipesapp.adapters.RandomCocktailAdapter
-import com.krygodev.coctailsrecipesapp.ui.viewmodelsproviders.RandomViewModelProviderFactory
 import com.krygodev.coctailsrecipesapp.ui.activities.StartupActivity
 import com.krygodev.coctailsrecipesapp.ui.viewmodels.RandomViewModel
+import com.krygodev.coctailsrecipesapp.ui.viewmodelsproviders.RandomViewModelProviderFactory
 import com.krygodev.coctailsrecipesapp.util.Resource
 import kotlinx.android.synthetic.main.fragment_random_coctail.*
 
@@ -44,6 +44,7 @@ class RandomCoctailFragment : Fragment() {
                 is Resource.Success -> {
                     response.data?.let { cocktailResponse ->
                         Log.d(TAG, "Success")
+                        randomCocktailProgressIndicator.visibility = View.INVISIBLE
                         randomCocktailAdapter.differ.submitList(cocktailResponse.drinks)
                     }
                 }
@@ -52,7 +53,10 @@ class RandomCoctailFragment : Fragment() {
                         Log.e(TAG, "An error occured: $errorMessage")
                     }
                 }
-                is Resource.Loading -> Log.d(TAG, "Loading...")
+                is Resource.Loading -> {
+                    Log.d(TAG, "Loading...")
+                    randomCocktailProgressIndicator.visibility = View.VISIBLE
+                }
             }
         })
     }

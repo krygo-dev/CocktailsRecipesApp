@@ -65,6 +65,7 @@ class CocktailDetailsFragment : Fragment() {
                 is Resource.Success -> {
                     response.data?.let { cocktailResponse ->
                         Log.d(TAG, "Success")
+                        cocktailDetailsProgressIndicator.visibility = View.INVISIBLE
                         cocktailAdapter.differ.submitList(cocktailResponse.drinks)
                     }
                 }
@@ -73,7 +74,10 @@ class CocktailDetailsFragment : Fragment() {
                         Log.e(TAG, "An error occured: $errorMessage")
                     }
                 }
-                is Resource.Loading -> Log.d(TAG, "Loading...")
+                is Resource.Loading -> {
+                    Log.d(TAG, "Loading...")
+                    cocktailDetailsProgressIndicator.visibility = View.VISIBLE
+                }
             }
         })
 
