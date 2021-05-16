@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.krygodev.coctailsrecipesapp.R
+import com.krygodev.coctailsrecipesapp.data.Category
 import com.krygodev.coctailsrecipesapp.data.CocktailFromCategory
 import kotlinx.android.synthetic.main.card_view_cocktail.view.*
 
@@ -43,15 +44,25 @@ class CategoryCocktailsAdapter : RecyclerView.Adapter<CategoryCocktailsAdapter.C
         )
     }
 
+    override fun getItemCount(): Int {
+        return differ.currentList.size
+    }
+
+    private var onItemClickListener: ((CocktailFromCategory) -> Unit)? = null
+
     override fun onBindViewHolder(holder: CategoryCocktailsViewHolder, position: Int) {
         val cocktail = differ.currentList[position]
         holder.itemView.apply {
             Glide.with(this).load(cocktail.strDrinkThumb).into(cocktailImageImageView)
             cocktailNameTextView.text = cocktail.strDrink
+
+            setOnClickListener {
+                onItemClickListener?.let { it(cocktail) }
+            }
         }
     }
 
-    override fun getItemCount(): Int {
-        return differ.currentList.size
+    fun setOnItemClickListener(listener: (CocktailFromCategory) -> Unit) {
+        onItemClickListener = listener
     }
 }

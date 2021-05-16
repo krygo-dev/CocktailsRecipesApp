@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.krygodev.coctailsrecipesapp.R
@@ -44,6 +45,13 @@ class AllCocktailsFragment : Fragment() {
         val categoryName = args.categoryName
 
         viewModel.getCocktailsFromCategory(categoryName)
+
+        cocktailsAdapter.setOnItemClickListener { cocktailFromCategory ->
+            val bundle = Bundle().apply {
+                putInt("cocktailID", cocktailFromCategory.idDrink.toInt())
+            }
+            findNavController().navigate(R.id.action_allCocktailsFragment_to_cocktailDetailsFragment, bundle)
+        }
 
         viewModel.cocktails.observe(viewLifecycleOwner, { response ->
             when (response) {
