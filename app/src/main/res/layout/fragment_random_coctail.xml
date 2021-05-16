@@ -1,51 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/randomCoctailImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minWidth="200dp"
-        android:minHeight="200dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/ic_image_loading" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/randomCoctailNameTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/randomCoctailImageView"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:text="@string/app_name"
-        android:textSize="25sp"
-        android:textAlignment="center"
-        android:textStyle="bold"
-        android:textColor="@color/black"/>
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/randomCoctailInstructionTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/randomCoctailNameTextView"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:text="Rub the rim of the glass with the lime slice to make the salt stick to it. Take care to moisten only the outer rim and sprinkle the salt on it. The salt should present to the lips of the imbiber and never mix into the cocktail. Shake the other ingredients with ice, then carefully pour into the glass."
-        android:textSize="18sp"
-        android:textAlignment="center"/>
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/randomCoctailIngredientsRecyclerView"
+        android:id="@+id/randomCocktailRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/randomCoctailInstructionTextView"
-        android:layout_marginTop="20dp"
+        android:layout_height="match_parent"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"/>
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        tools:listitem="@layout/cocktail_details" />
 
 </RelativeLayout>

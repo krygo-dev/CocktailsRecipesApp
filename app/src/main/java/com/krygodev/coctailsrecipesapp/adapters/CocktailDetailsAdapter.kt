@@ -69,6 +69,10 @@ class CocktailDetailsAdapter : RecyclerView.Adapter<CocktailDetailsAdapter.Cockt
             ingredientMeasure6TextView.text = cocktail.strMeasure6
             ingredientName7TextView.text = cocktail.strIngredient7
             ingredientMeasure7TextView.text = cocktail.strMeasure7
+            ingredientName8TextView.text = cocktail.strIngredient8
+            ingredientMeasure8TextView.text = cocktail.strMeasure8
+            ingredientName9TextView.text = cocktail.strIngredient9
+            ingredientMeasure9TextView.text = cocktail.strMeasure9
 
             cocktailInFavImageView.setOnClickListener {
                 onItemClickListener?.let { it(cocktail) }
