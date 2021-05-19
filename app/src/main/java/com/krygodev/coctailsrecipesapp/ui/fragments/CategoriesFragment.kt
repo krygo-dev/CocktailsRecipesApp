@@ -5,15 +5,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.krygodev.coctailsrecipesapp.R
 import com.krygodev.coctailsrecipesapp.adapters.CategoryAdapter
-import com.krygodev.coctailsrecipesapp.ui.viewmodelsproviders.CategoriesViewModelProviderFactory
 import com.krygodev.coctailsrecipesapp.ui.activities.StartupActivity
 import com.krygodev.coctailsrecipesapp.ui.viewmodels.CategoriesViewModel
+import com.krygodev.coctailsrecipesapp.ui.viewmodelsproviders.CategoriesViewModelProviderFactory
 import com.krygodev.coctailsrecipesapp.util.Resource
 import kotlinx.android.synthetic.main.fragment_categories.*
 
@@ -70,6 +72,21 @@ class CategoriesFragment : Fragment() {
         categoriesSearchView.apply {
             onActionViewExpanded()
             clearFocus()
+            imeOptions = EditorInfo.IME_ACTION_SEARCH
+            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    val bundle = Bundle().apply {
+                        putString("query", query)
+                    }
+                    findNavController().navigate(R.id.action_categoriesFragment_to_searchCocktailFragment, bundle)
+                    return true
+                }
+
+                override fun onQueryTextChange(p0: String?): Boolean {
+                    return true
+                }
+
+            })
         }
     }
 

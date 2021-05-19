@@ -3,8 +3,6 @@ package com.krygodev.coctailsrecipesapp.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Filter
-import android.widget.Filterable
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -12,8 +10,6 @@ import com.bumptech.glide.Glide
 import com.krygodev.coctailsrecipesapp.R
 import com.krygodev.coctailsrecipesapp.data.CocktailFromCategory
 import kotlinx.android.synthetic.main.card_view_cocktail.view.*
-import java.util.*
-import kotlin.collections.ArrayList
 
 class CategoryCocktailsAdapter : RecyclerView.Adapter<CategoryCocktailsAdapter.CategoryCocktailsViewHolder>() {
 

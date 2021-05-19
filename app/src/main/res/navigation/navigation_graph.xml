@@ -35,6 +35,9 @@
         <action
             android:id="@+id/action_categoriesFragment_to_allCocktailsFragment"
             app:destination="@id/allCocktailsFragment" />
+        <action
+            android:id="@+id/action_categoriesFragment_to_searchCocktailFragment"
+            app:destination="@id/searchCocktailFragment" />
     </fragment>
     <fragment
         android:id="@+id/allCocktailsFragment"
@@ -65,6 +68,24 @@
         <argument
             android:name="cocktailID"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_cocktailDetailsFragment_to_searchCocktailFragment"
+            app:destination="@id/searchCocktailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchCocktailFragment"
+        android:name="com.krygodev.coctailsrecipesapp.ui.fragments.SearchCocktailFragment"
+        android:label="SearchCocktailFragment"
+        tools:layout="@layout/fragment_search_cocktail">
+        <action
+            android:id="@+id/action_searchCocktailFragment_to_cocktailDetailsFragment"
+            app:destination="@id/cocktailDetailsFragment" />
+        <action
+            android:id="@+id/action_searchCocktailFragment_to_categoriesFragment"
+            app:destination="@id/categoriesFragment" />
+        <argument
+            android:name="query"
+            app:argType="string" />
     </fragment>
 
 </navigation>
