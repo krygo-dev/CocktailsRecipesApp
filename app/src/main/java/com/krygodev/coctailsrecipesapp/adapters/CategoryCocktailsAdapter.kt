@@ -3,14 +3,17 @@ package com.krygodev.coctailsrecipesapp.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.krygodev.coctailsrecipesapp.R
-import com.krygodev.coctailsrecipesapp.data.Category
 import com.krygodev.coctailsrecipesapp.data.CocktailFromCategory
 import kotlinx.android.synthetic.main.card_view_cocktail.view.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 class CategoryCocktailsAdapter : RecyclerView.Adapter<CategoryCocktailsAdapter.CategoryCocktailsViewHolder>() {
 
@@ -65,4 +68,32 @@ class CategoryCocktailsAdapter : RecyclerView.Adapter<CategoryCocktailsAdapter.C
     fun setOnItemClickListener(listener: (CocktailFromCategory) -> Unit) {
         onItemClickListener = listener
     }
+
+    /**override fun getFilter(): Filter {
+        return object : Filter() {
+            override fun performFiltering(text: CharSequence?): FilterResults {
+                val filteredList = ArrayList<CocktailFromCategory>()
+
+                if (text == null || text.isEmpty()){
+                    filteredList.addAll(listOfAll)
+                } else {
+                    val pattern = text.toString().toLowerCase(Locale.ROOT).trim()
+
+                    for (cocktail in listOfAll) {
+                        if (cocktail.strDrink.toLowerCase(Locale.ROOT).contains(pattern)) filteredList.add(cocktail)
+                    }
+                }
+
+                val filterResult = FilterResults()
+                filterResult.values = filteredList
+                return filterResult
+            }
+
+            @Suppress("UNCHECKED_CAST")
+            override fun publishResults(text: CharSequence?, result: FilterResults?) {
+                differ.submitList(result?.values as MutableList<CocktailFromCategory>?)
+            }
+
+        }
+    }**/
 }

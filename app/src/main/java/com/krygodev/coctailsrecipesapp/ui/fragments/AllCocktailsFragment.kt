@@ -5,6 +5,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -77,6 +79,19 @@ class AllCocktailsFragment : Fragment() {
         allCoctailsSearchView.apply {
             onActionViewExpanded()
             clearFocus()
+            imeOptions = EditorInfo.IME_ACTION_SEARCH
+            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(text: String?): Boolean {
+                    TODO("NOT IMPLEMENTED YET")
+                    //return true
+                }
+
+                override fun onQueryTextChange(text: String?): Boolean {
+                    TODO("NOT IMPLEMENTED YET")
+                    //return true
+                }
+
+            })
         }
     }
 

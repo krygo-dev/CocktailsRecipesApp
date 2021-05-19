@@ -16,6 +16,8 @@ class CocktailsRepository(
 
     suspend fun getCocktailById(id: Int) = RetrofitInstance.api.getCocktailByID(id)
 
+    suspend fun getCocktailByName(name: String) = RetrofitInstance.api.getCocktailByName(name)
+
     suspend fun getAllIngredients() = RetrofitInstance.api.getAllIngredients()
 
     suspend fun insertIngredient(ingredient: Ingredient) = db.getIngredientDao().insert(ingredient)
