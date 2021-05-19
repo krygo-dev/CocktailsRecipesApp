@@ -50,21 +50,21 @@ class RandomCocktailAdapter : RecyclerView.Adapter<RandomCocktailAdapter.RandomC
             cocktailNameTextView.text = cocktail.strDrink
             cocktailInstructionTextView.text = cocktail.strInstructions
 
-            if (cocktail.strIngredient1.isNotEmpty()) {
+            if (cocktail.strIngredient1 != null) {
                 ingredientName1TextView.text = cocktail.strIngredient1
                 ingredientMeasure1TextView.text = cocktail.strMeasure1
             } else {
                 tableRow1.visibility = View.GONE
             }
 
-            if (cocktail.strIngredient2.isNotEmpty()) {
+            if (cocktail.strIngredient2 != null) {
                 ingredientName2TextView.text = cocktail.strIngredient2
                 ingredientMeasure2TextView.text = cocktail.strMeasure2
             } else {
                 tableRow2.visibility = View.GONE
             }
 
-            if (cocktail.strIngredient3.isNotEmpty()) {
+            if (cocktail.strIngredient3 != null) {
                 ingredientName3TextView.text = cocktail.strIngredient3
                 ingredientMeasure3TextView.text = cocktail.strMeasure3
             } else {

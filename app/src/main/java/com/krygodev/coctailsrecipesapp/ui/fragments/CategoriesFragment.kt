@@ -82,7 +82,7 @@ class CategoriesFragment : Fragment() {
                     return true
                 }
 
-                override fun onQueryTextChange(p0: String?): Boolean {
+                override fun onQueryTextChange(query: String?): Boolean {
                     return true
                 }
 

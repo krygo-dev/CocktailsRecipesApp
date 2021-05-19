@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -78,7 +79,18 @@ class SearchCocktailFragment : Fragment() {
             onActionViewExpanded()
             clearFocus()
             imeOptions = EditorInfo.IME_ACTION_SEARCH
-            //setOnQueryTextListener(SearchView.OnQueryTextListener {})
+            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    if (query != null && query.isNotEmpty()) viewModel.getCocktailByName(query)
+                    return true
+                }
+
+                override fun onQueryTextChange(query: String?): Boolean {
+                    if (query != null && query.isNotEmpty()) viewModel.getCocktailByName(query)
+                    return true
+                }
+
+            })
         }
     }
 
