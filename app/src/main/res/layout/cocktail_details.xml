@@ -278,4 +278,154 @@
             android:textSize="20sp" />
     </TableRow>
 
+    <TableRow
+        android:id="@+id/tableRow10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tableRow9"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/ingredientName10TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/placeholder"
+            android:maxWidth="180dp"
+            android:textSize="20sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/ingredientMeasure10TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="@string/measurePlaceholder"
+            android:textSize="20sp" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tableRow10"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/ingredientName11TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/placeholder"
+            android:maxWidth="180dp"
+            android:textSize="20sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/ingredientMeasure11TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="@string/measurePlaceholder"
+            android:textSize="20sp" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tableRow11"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/ingredientName12TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/placeholder"
+            android:maxWidth="180dp"
+            android:textSize="20sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/ingredientMeasure12TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="@string/measurePlaceholder"
+            android:textSize="20sp" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow13"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tableRow12"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/ingredientName13TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/placeholder"
+            android:maxWidth="180dp"
+            android:textSize="20sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/ingredientMeasure13TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="@string/measurePlaceholder"
+            android:textSize="20sp" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow14"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tableRow13"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/ingredientName14TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/placeholder"
+            android:maxWidth="180dp"
+            android:textSize="20sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/ingredientMeasure14TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="@string/measurePlaceholder"
+            android:textSize="20sp" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tableRow14"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/ingredientName15TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/placeholder"
+            android:maxWidth="180dp"
+            android:textSize="20sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/ingredientMeasure15TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="@string/measurePlaceholder"
+            android:textSize="20sp" />
+    </TableRow>
+
 </RelativeLayout>
