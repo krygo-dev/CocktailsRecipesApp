@@ -39,6 +39,10 @@ class RandomCoctailFragment : Fragment() {
 
         setupRecyclerView()
 
+        randomCocktailAdapter.setOnItemClickListener { cocktail ->
+            viewModel.insertCocktail(cocktail)
+        }
+
         viewModel.cocktails.observe(viewLifecycleOwner, { response ->
             when (response) {
                 is Resource.Success -> {

@@ -33,5 +33,5 @@ class CocktailsRepository(
 
     fun getCocktailsFromDatabase() = db.getCocktailDao().getAllCocktails()
 
-    suspend fun getIngredientsList() = db.getIngredientDao().getIngredientsList()
+    //suspend fun getIngredientsList() = db.getIngredientDao().getIngredientsList()
 }

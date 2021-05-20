@@ -36,6 +36,4 @@ class CocktailDetailsViewModel(
     fun deleteCocktail(cocktail: Cocktail) = viewModelScope.launch {
         cocktailsRepository.deleteCocktail(cocktail)
     }
-
-    fun getCocktailsFromDatabse() = cocktailsRepository.getCocktailsFromDatabase()
 }

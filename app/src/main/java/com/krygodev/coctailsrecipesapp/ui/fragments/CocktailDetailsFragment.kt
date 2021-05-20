@@ -49,15 +49,7 @@ class CocktailDetailsFragment : Fragment() {
         viewModel.getCocktailById(cocktailID)
 
         cocktailAdapter.setOnItemClickListener { cocktail ->
-            if (cocktailInFavImageView.background == context?.let { ContextCompat.getDrawable(it, R.drawable.ic_favourite) }) {
-                cocktailInFavImageView.setBackgroundResource(R.drawable.ic_favourite_full)
-                viewModel.insertCocktail(cocktail)
-                Toast.makeText(context, "${cocktail.strDrink} saved in favourites", Toast.LENGTH_SHORT).show()
-            } else {
-                cocktailInFavImageView.setBackgroundResource(R.drawable.ic_favourite)
-                viewModel.deleteCocktail(cocktail)
-                Toast.makeText(context, "${cocktail.strDrink} deleted from favourites", Toast.LENGTH_SHORT).show()
-            }
+            viewModel.insertCocktail(cocktail)
         }
 
         viewModel.cocktails.observe(viewLifecycleOwner, { response ->

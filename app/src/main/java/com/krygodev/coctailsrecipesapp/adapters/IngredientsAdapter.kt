@@ -7,9 +7,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.krygodev.coctailsrecipesapp.R
-import com.krygodev.coctailsrecipesapp.data.Category
 import com.krygodev.coctailsrecipesapp.data.Ingredient
-import com.krygodev.coctailsrecipesapp.ui.fragments.IngredientsFragment
 import kotlinx.android.synthetic.main.card_view_ingredient.view.*
 
 class IngredientsAdapter : RecyclerView.Adapter<IngredientsAdapter.IngredientsViewHolder>() {

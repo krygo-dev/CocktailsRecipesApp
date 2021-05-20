@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.krygodev.coctailsrecipesapp.data.AllCocktails
+import com.krygodev.coctailsrecipesapp.data.Cocktail
 import com.krygodev.coctailsrecipesapp.repository.CocktailsRepository
 import com.krygodev.coctailsrecipesapp.util.Resource
 import kotlinx.coroutines.launch
@@ -17,6 +18,10 @@ class RandomViewModel(
 
     init {
         getRandomCocktail()
+    }
+
+    fun insertCocktail(cocktail: Cocktail) = viewModelScope.launch {
+        cocktailsRepository.insertCocktail(cocktail)
     }
 
     fun getRandomCocktail() = viewModelScope.launch {
