@@ -1,5 +1,6 @@
 package com.krygodev.coctailsrecipesapp.repository
 
+import androidx.lifecycle.LiveData
 import com.krygodev.coctailsrecipesapp.api.RetrofitInstance
 import com.krygodev.coctailsrecipesapp.data.Cocktail
 import com.krygodev.coctailsrecipesapp.data.Ingredient
@@ -31,4 +32,6 @@ class CocktailsRepository(
     suspend fun deleteCocktail(cocktail: Cocktail) = db.getCocktailDao().delete(cocktail)
 
     fun getCocktailsFromDatabase() = db.getCocktailDao().getAllCocktails()
+
+    suspend fun getIngredientsList() = db.getIngredientDao().getIngredientsList()
 }

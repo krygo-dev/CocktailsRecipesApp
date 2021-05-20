@@ -15,9 +15,12 @@ class IngredientsViewModel(
 ) : ViewModel() {
 
     val ingredients: MutableLiveData<Resource<AllIngredients>> = MutableLiveData()
-    //val ingredientsInStock: MutableLiveData<Resource<AllIngredients>> = MutableLiveData()
+    lateinit var ingredientsInStock: List<Ingredient>
 
     init {
+//        viewModelScope.launch {
+//            ingredientsInStock = cocktailsRepository.getIngredientsList()
+//        }
         getAllIngredients()
     }
 
@@ -32,6 +35,7 @@ class IngredientsViewModel(
     fun getIngredientsFromDatabase() = cocktailsRepository.getIngredientsFromDatabase()
 
     private fun getAllIngredients() = viewModelScope.launch {
+        ingredientsInStock = cocktailsRepository.getIngredientsList()
         ingredients.postValue(Resource.Loading())
         val response = cocktailsRepository.getAllIngredients()
         ingredients.postValue(handleAllIngredientsResponse(response))
@@ -39,6 +43,11 @@ class IngredientsViewModel(
 
     private fun handleAllIngredientsResponse(response: Response<AllIngredients>): Resource<AllIngredients> {
         if (response.isSuccessful) response.body()?.let { result ->
+            result.drinks.forEach { ingredient ->
+                if (ingredientsInStock.contains(ingredient)) {
+                    result.drinks.minus(ingredient)
+                }
+            }
             return Resource.Success(result)
         }
         return Resource.Error(response.message())

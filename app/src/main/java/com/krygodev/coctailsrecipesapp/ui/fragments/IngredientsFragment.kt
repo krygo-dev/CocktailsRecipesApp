@@ -36,63 +36,23 @@ class IngredientsFragment : Fragment() {
 
         val viewModelProviderFactory = IngredientsViewModelProviderFactory((activity as StartupActivity).repository)
         viewModel = ViewModelProvider(this, viewModelProviderFactory).get(IngredientsViewModel::class.java)
+
         setupRecyclerView()
 
         ingredientsAdapter.setOnItemClickListener { ingredient ->
             ingredient.inStock = !ingredient.inStock
 
-            if (ingredient.inStock) viewModel.insertIngredient(ingredient)
+            if (ingredient.inStock) {
+                viewModel.insertIngredient(ingredient)
+                ingredientsChipGroup.check(R.id.ingredientsInStockChip)
+            }
             else viewModel.deleteIngredient(ingredient)
         }
 
-        viewModel.ingredients.observe(viewLifecycleOwner, { response ->
-            when (response) {
-                is Resource.Success -> {
-                    response.data?.let { ingredientsResponse ->
-                        Log.d(TAG, "Ingredients successfully loaded!")
-                        ingredientsProgressIndicator.visibility = View.INVISIBLE
-                        ingredientsAdapter.differ.submitList(ingredientsResponse.drinks)
-                    }
-                }
-                is Resource.Error -> {
-                    response.message?.let { errorMessage ->
-                        Log.e(TAG, "Ann error occured: $errorMessage")
-                    }
-                }
-                is Resource.Loading -> {
-                    Log.d(TAG, "Loading ingredients...")
-                    ingredientsProgressIndicator.visibility = View.VISIBLE
-                }
-            }
-        })
+        populateRecyclerView(ingredientsChipGroup.checkedChipId)
 
-        ingredientsChipGroup.setOnCheckedChangeListener { group, checkedId ->
-            if (checkedId == R.id.ingredientsNotInStockChip) {
-                viewModel.ingredients.observe(viewLifecycleOwner, { response ->
-                    when (response) {
-                        is Resource.Success -> {
-                            response.data?.let { ingredientsResponse ->
-                                Log.d(TAG, "Ingredients successfully loaded!")
-                                ingredientsProgressIndicator.visibility = View.INVISIBLE
-                                ingredientsAdapter.differ.submitList(ingredientsResponse.drinks)
-                            }
-                        }
-                        is Resource.Error -> {
-                            response.message?.let { errorMessage ->
-                                Log.e(TAG, "Ann error occured: $errorMessage")
-                            }
-                        }
-                        is Resource.Loading -> {
-                            Log.d(TAG, "Loading ingredients...")
-                            ingredientsProgressIndicator.visibility = View.VISIBLE
-                        }
-                    }
-                })
-            } else {
-                viewModel.getIngredientsFromDatabase().observe(viewLifecycleOwner, { ingredients ->
-                    ingredientsAdapter.differ.submitList(ingredients)
-                })
-            }
+        ingredientsChipGroup.setOnCheckedChangeListener { _, checkedId ->
+            populateRecyclerView(checkedId)
         }
     }
 
@@ -101,6 +61,35 @@ class IngredientsFragment : Fragment() {
         ingredientsRecyclerView.apply {
             adapter = ingredientsAdapter
             layoutManager = LinearLayoutManager(activity)
+        }
+    }
+
+    private fun populateRecyclerView(id: Int) {
+        if (id == R.id.ingredientsNotInStockChip) {
+            viewModel.ingredients.observe(viewLifecycleOwner, { response ->
+                when (response) {
+                    is Resource.Success -> {
+                        response.data?.let { ingredientsResponse ->
+                            Log.d(TAG, "Ingredients successfully loaded!")
+                            ingredientsProgressIndicator.visibility = View.INVISIBLE
+                            ingredientsAdapter.differ.submitList(ingredientsResponse.drinks)
+                        }
+                    }
+                    is Resource.Error -> {
+                        response.message?.let { errorMessage ->
+                            Log.e(TAG, "Ann error occured: $errorMessage")
+                        }
+                    }
+                    is Resource.Loading -> {
+                        Log.d(TAG, "Loading ingredients...")
+                        ingredientsProgressIndicator.visibility = View.VISIBLE
+                    }
+                }
+            })
+        } else {
+            viewModel.getIngredientsFromDatabase().observe(viewLifecycleOwner, { ingredients ->
+                ingredientsAdapter.differ.submitList(ingredients)
+            })
         }
     }
 }
