@@ -10,11 +10,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.krygodev.coctailsrecipesapp.R
 import com.krygodev.coctailsrecipesapp.adapters.IngredientsAdapter
-import com.krygodev.coctailsrecipesapp.ui.viewmodelsproviders.IngredientsViewModelProviderFactory
 import com.krygodev.coctailsrecipesapp.ui.activities.StartupActivity
 import com.krygodev.coctailsrecipesapp.ui.viewmodels.IngredientsViewModel
+import com.krygodev.coctailsrecipesapp.ui.viewmodelsproviders.IngredientsViewModelProviderFactory
 import com.krygodev.coctailsrecipesapp.util.Resource
-import kotlinx.android.synthetic.main.card_view_ingredient.*
 import kotlinx.android.synthetic.main.fragment_ingredients.*
 
 class IngredientsFragment : Fragment() {
@@ -67,13 +66,33 @@ class IngredientsFragment : Fragment() {
             }
         })
 
-        viewModel.getIngredientsFromDatabase().observe(viewLifecycleOwner, { ingredients ->
-            ingredientsAdapter.differ.submitList(ingredients)
-        })
-
-        ingredientsSearchView.apply {
-            onActionViewExpanded()
-            clearFocus()
+        ingredientsChipGroup.setOnCheckedChangeListener { group, checkedId ->
+            if (checkedId == R.id.ingredientsNotInStockChip) {
+                viewModel.ingredients.observe(viewLifecycleOwner, { response ->
+                    when (response) {
+                        is Resource.Success -> {
+                            response.data?.let { ingredientsResponse ->
+                                Log.d(TAG, "Ingredients successfully loaded!")
+                                ingredientsProgressIndicator.visibility = View.INVISIBLE
+                                ingredientsAdapter.differ.submitList(ingredientsResponse.drinks)
+                            }
+                        }
+                        is Resource.Error -> {
+                            response.message?.let { errorMessage ->
+                                Log.e(TAG, "Ann error occured: $errorMessage")
+                            }
+                        }
+                        is Resource.Loading -> {
+                            Log.d(TAG, "Loading ingredients...")
+                            ingredientsProgressIndicator.visibility = View.VISIBLE
+                        }
+                    }
+                })
+            } else {
+                viewModel.getIngredientsFromDatabase().observe(viewLifecycleOwner, { ingredients ->
+                    ingredientsAdapter.differ.submitList(ingredients)
+                })
+            }
         }
     }
 

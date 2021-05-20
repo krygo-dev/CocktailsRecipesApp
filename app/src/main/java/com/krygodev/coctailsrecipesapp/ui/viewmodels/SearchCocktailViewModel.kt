@@ -1,8 +1,6 @@
 package com.krygodev.coctailsrecipesapp.ui.viewmodels
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.krygodev.coctailsrecipesapp.data.AllCocktails
 import com.krygodev.coctailsrecipesapp.repository.CocktailsRepository
 import com.krygodev.coctailsrecipesapp.util.Resource
@@ -13,7 +11,7 @@ class SearchCocktailViewModel(
     val cocktailsRepository: CocktailsRepository
 ) : ViewModel() {
 
-    val cocktails: MutableLiveData<Resource<AllCocktails>> = MutableLiveData()
+    var cocktails: MutableLiveData<Resource<AllCocktails>> = MutableLiveData()
 
     fun getCocktailByName(name: String) = viewModelScope.launch {
         cocktails.postValue(Resource.Loading())

@@ -18,6 +18,10 @@ import com.krygodev.coctailsrecipesapp.ui.viewmodels.CategoriesViewModel
 import com.krygodev.coctailsrecipesapp.ui.viewmodelsproviders.CategoriesViewModelProviderFactory
 import com.krygodev.coctailsrecipesapp.util.Resource
 import kotlinx.android.synthetic.main.fragment_categories.*
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class CategoriesFragment : Fragment() {
 
@@ -32,6 +36,11 @@ class CategoriesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_categories, container, false)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        categoriesSearchView.setQuery("", false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -69,20 +78,29 @@ class CategoriesFragment : Fragment() {
             }
         })
 
+        var job: Job? = null
         categoriesSearchView.apply {
             onActionViewExpanded()
             clearFocus()
             imeOptions = EditorInfo.IME_ACTION_SEARCH
             setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
-                    val bundle = Bundle().apply {
-                        putString("query", query)
-                    }
-                    findNavController().navigate(R.id.action_categoriesFragment_to_searchCocktailFragment, bundle)
                     return true
                 }
 
                 override fun onQueryTextChange(query: String?): Boolean {
+                    job?.cancel()
+                    job = MainScope().launch {
+                        delay(500L)
+                        query?.let {
+                            if (query.isNotEmpty()) {
+                                val bundle = Bundle().apply {
+                                    putString("query", query)
+                                }
+                                findNavController().navigate(R.id.action_categoriesFragment_to_searchCocktailFragment, bundle)
+                            }
+                        }
+                    }
                     return true
                 }
 

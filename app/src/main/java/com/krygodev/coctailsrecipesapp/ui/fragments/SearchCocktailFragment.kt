@@ -1,6 +1,7 @@
 package com.krygodev.coctailsrecipesapp.ui.fragments
 
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,10 @@ import com.krygodev.coctailsrecipesapp.ui.viewmodels.SearchCocktailViewModel
 import com.krygodev.coctailsrecipesapp.ui.viewmodelsproviders.SearchCocktailViewModelProviderFactory
 import com.krygodev.coctailsrecipesapp.util.Resource
 import kotlinx.android.synthetic.main.fragment_search_cocktail.*
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class SearchCocktailFragment : Fragment() {
 
@@ -75,18 +80,25 @@ class SearchCocktailFragment : Fragment() {
             }
         })
 
+        var job: Job? = null
         searchCocktailSearchView.apply {
             onActionViewExpanded()
             clearFocus()
+            setQuery(query, false)
             imeOptions = EditorInfo.IME_ACTION_SEARCH
             setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
-                    if (query != null && query.isNotEmpty()) viewModel.getCocktailByName(query)
                     return true
                 }
 
                 override fun onQueryTextChange(query: String?): Boolean {
-                    if (query != null && query.isNotEmpty()) viewModel.getCocktailByName(query)
+                    job?.cancel()
+                    job = MainScope().launch {
+                        delay(500L)
+                        query?.let {
+                            viewModel.getCocktailByName(query)
+                        }
+                    }
                     return true
                 }
 

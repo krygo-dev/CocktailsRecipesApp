@@ -4,23 +4,45 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <SearchView
-        android:id="@+id/ingredientsSearchView"
-        android:layout_width="match_parent"
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/ingredientsChipGroup"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:queryHint="@string/search"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginTop="20dp" />
+        app:singleLine="true"
+        app:selectionRequired="true"
+        app:singleSelection="true"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/ingredientsNotInStockChip"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="@string/notInStock"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:checked="true"/>
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/ingredientsInStockChip"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="@string/inStock"
+            android:textAlignment="center"
+            android:textSize="20sp"/>
+
+    </com.google.android.material.chip.ChipGroup>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ingredientsRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/ingredientsSearchView"
+        android:layout_below="@id/ingredientsChipGroup"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:padding="10dp"/>
 
     <com.google.android.material.progressindicator.CircularProgressIndicator

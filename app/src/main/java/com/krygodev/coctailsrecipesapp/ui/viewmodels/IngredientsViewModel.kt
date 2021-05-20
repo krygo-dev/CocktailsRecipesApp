@@ -15,22 +15,10 @@ class IngredientsViewModel(
 ) : ViewModel() {
 
     val ingredients: MutableLiveData<Resource<AllIngredients>> = MutableLiveData()
+    //val ingredientsInStock: MutableLiveData<Resource<AllIngredients>> = MutableLiveData()
 
     init {
         getAllIngredients()
-    }
-
-    fun getAllIngredients() = viewModelScope.launch {
-        ingredients.postValue(Resource.Loading())
-        val response = cocktailsRepository.getAllIngredients()
-        ingredients.postValue(handleAllIngredientsResponse(response))
-    }
-
-    private fun handleAllIngredientsResponse(response: Response<AllIngredients>): Resource<AllIngredients> {
-        if (response.isSuccessful) response.body()?.let { result ->
-            return Resource.Success(result)
-        }
-        return Resource.Error(response.message())
     }
 
     fun insertIngredient(ingredient: Ingredient) = viewModelScope.launch {
@@ -42,4 +30,17 @@ class IngredientsViewModel(
     }
 
     fun getIngredientsFromDatabase() = cocktailsRepository.getIngredientsFromDatabase()
+
+    private fun getAllIngredients() = viewModelScope.launch {
+        ingredients.postValue(Resource.Loading())
+        val response = cocktailsRepository.getAllIngredients()
+        ingredients.postValue(handleAllIngredientsResponse(response))
+    }
+
+    private fun handleAllIngredientsResponse(response: Response<AllIngredients>): Resource<AllIngredients> {
+        if (response.isSuccessful) response.body()?.let { result ->
+            return Resource.Success(result)
+        }
+        return Resource.Error(response.message())
+    }
 }

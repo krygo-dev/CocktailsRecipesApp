@@ -74,12 +74,6 @@ class AllCocktailsFragment : Fragment() {
                 }
             }
         })
-
-        allCoctailsSearchView.apply {
-            onActionViewExpanded()
-            clearFocus()
-            imeOptions = EditorInfo.IME_ACTION_SEARCH
-        }
     }
 
     private fun setupRecyclerView() {
