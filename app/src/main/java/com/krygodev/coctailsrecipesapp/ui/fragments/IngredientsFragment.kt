@@ -27,7 +27,6 @@ class IngredientsFragment : Fragment(R.layout.fragment_ingredients) {
         setupRecyclerView()
 
         ingredientsAdapter.setOnItemClickListener { ingredient ->
-            Log.d(TAG, ingredient.inStock.toString())
             if (ingredient.inStock) {
                 viewModel.insertIngredient(ingredient).invokeOnCompletion {
                     ingredientsAdapter.inStock = viewModel.ingredientsInStock

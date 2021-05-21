@@ -1,6 +1,5 @@
 package com.krygodev.coctailsrecipesapp.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,7 +47,6 @@ class IngredientsAdapter : RecyclerView.Adapter<IngredientsAdapter.IngredientsVi
     override fun onBindViewHolder(holder: IngredientsViewHolder, position: Int) {
         val ingredient = differ.currentList[position]
 
-        Log.d("TAG", inStock.toString())
         ingredient.inStock = inStock.any { ing -> ing.strIngredient1 == ingredient.strIngredient1 }
 
         holder.itemView.apply {

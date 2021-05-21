@@ -2,11 +2,11 @@ package com.krygodev.coctailsrecipesapp.ui.fragments
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.krygodev.coctailsrecipesapp.R
 import com.krygodev.coctailsrecipesapp.adapters.FavouritesAdapter
 import com.krygodev.coctailsrecipesapp.ui.viewmodels.FavouritesViewModel
@@ -33,7 +33,7 @@ class FavouriteCoctailsFragment : Fragment(R.layout.fragment_favourite_coctails)
 
         favouritesAdapter.setOnItemLongClickListener { cocktail ->
             viewModel.deleteCocktail(cocktail)
-            Toast.makeText(context, "Removed from favourites!", Toast.LENGTH_SHORT).show()
+            Snackbar.make(view, "Removed from favourites!", Snackbar.LENGTH_SHORT).show()
         }
 
         viewModel.getFavouritesCocktails().observe(viewLifecycleOwner, { cocktails ->

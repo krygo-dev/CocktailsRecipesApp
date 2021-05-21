@@ -1,7 +1,6 @@
 package com.krygodev.coctailsrecipesapp.adapters
 
 import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,9 +52,6 @@ class RandomCocktailAdapter : RecyclerView.Adapter<RandomCocktailAdapter.RandomC
 
     override fun onBindViewHolder(holder: RandomCocktailViewHolder, position: Int) {
         val cocktail = differ.currentList[position]
-
-        Log.d("RANDOM", ingInStock.toString())
-        Log.d("RANDOM", cocktailsInFav.toString())
 
         cocktail.inStock = cocktailsInFav.any{ c -> c.idDrink == cocktail.idDrink}
 
@@ -247,7 +243,7 @@ class RandomCocktailAdapter : RecyclerView.Adapter<RandomCocktailAdapter.RandomC
             if (cocktail.inStock) cocktailInFavImageView.setBackgroundResource(R.drawable.ic_favourite_full)
             else cocktailInFavImageView.setBackgroundResource(R.drawable.ic_favourite)
 
-            cocktailInFavImageView.setOnClickListener { view ->
+            cocktailInFavImageView.setOnClickListener {
                 onItemClickListener?.let {
                     cocktail.inStock = !cocktail.inStock
                     if (cocktail.inStock) cocktailInFavImageView.setBackgroundResource(R.drawable.ic_favourite_full)

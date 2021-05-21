@@ -6,6 +6,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.krygodev.coctailsrecipesapp.R
 import com.krygodev.coctailsrecipesapp.adapters.RandomCocktailAdapter
 import com.krygodev.coctailsrecipesapp.ui.viewmodels.RandomViewModel
@@ -28,11 +29,13 @@ class RandomCoctailFragment : Fragment(R.layout.fragment_random_coctail) {
 
         randomCocktailAdapter.setOnItemClickListener { cocktail ->
             if (cocktail.inStock) {
+                Snackbar.make(view, "Added to favourites!", Snackbar.LENGTH_SHORT).show()
                 viewModel.insertCocktail(cocktail).invokeOnCompletion {
                     randomCocktailAdapter.ingInStock = viewModel.ingredientsInStock
                     randomCocktailAdapter.cocktailsInFav = viewModel.cocktailsInFav
                 }
             } else {
+                Snackbar.make(view, "Removed from favourites!", Snackbar.LENGTH_SHORT).show()
                 viewModel.deleteCocktail(cocktail).invokeOnCompletion {
                     randomCocktailAdapter.ingInStock = viewModel.ingredientsInStock
                     randomCocktailAdapter.cocktailsInFav = viewModel.cocktailsInFav
