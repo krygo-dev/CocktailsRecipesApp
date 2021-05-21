@@ -8,10 +8,10 @@ import com.google.gson.annotations.SerializedName
     tableName = "cocktails"
 )
 data class Cocktail(
-    @PrimaryKey(autoGenerate = true)
-    var id: Int? = null,
+    var inStock: Boolean = false,
     val dateModified: String? = null,
-    val idDrink: String? = null,
+    @PrimaryKey
+    val idDrink: String,
     val strAlcoholic: String? = null,
     val strCategory: String? = null,
     val strCreativeCommonsConfirmed: String? = null,

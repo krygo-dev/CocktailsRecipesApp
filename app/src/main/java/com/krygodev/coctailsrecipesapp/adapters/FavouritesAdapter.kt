@@ -9,8 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.krygodev.coctailsrecipesapp.R
 import com.krygodev.coctailsrecipesapp.data.Cocktail
-import com.krygodev.coctailsrecipesapp.data.CocktailFromCategory
-import com.krygodev.coctailsrecipesapp.data.Ingredient
 import kotlinx.android.synthetic.main.card_view_cocktail.view.*
 
 class FavouritesAdapter : RecyclerView.Adapter<FavouritesAdapter.FavouritesViewHolder>() {
@@ -56,10 +54,9 @@ class FavouritesAdapter : RecyclerView.Adapter<FavouritesAdapter.FavouritesViewH
                 onItemClickListener?.let { it(cocktail) }
             }
 
-            setOnItemLongClickListener {
-                onItemLongClickListener?.let {
-                    it(cocktail)
-                }
+            setOnLongClickListener {
+                onItemLongClickListener?.let { it(cocktail) }
+                return@setOnLongClickListener true
             }
         }
     }

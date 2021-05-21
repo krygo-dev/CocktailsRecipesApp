@@ -35,8 +35,4 @@ class CocktailDetailsViewModel @Inject constructor(
     fun insertCocktail(cocktail: Cocktail) = viewModelScope.launch {
         cocktailsRepository.insertCocktail(cocktail)
     }
-
-    fun deleteCocktail(cocktail: Cocktail) = viewModelScope.launch {
-        cocktailsRepository.deleteCocktail(cocktail)
-    }
 }

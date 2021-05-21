@@ -33,7 +33,8 @@ class CocktailDetailsFragment : Fragment(R.layout.fragment_cocktail_details) {
         viewModel.getCocktailById(cocktailID)
 
         cocktailAdapter.setOnItemClickListener { cocktail ->
-            viewModel.insertCocktail(cocktail)
+            Log.d(TAG, cocktail.inStock.toString())
+            if (cocktail.inStock) viewModel.insertCocktail(cocktail)
         }
 
         viewModel.cocktails.observe(viewLifecycleOwner, { response ->

@@ -7,8 +7,7 @@ import androidx.room.PrimaryKey
     tableName = "ingredients"
 )
 data class Ingredient(
-    @PrimaryKey(autoGenerate = true)
-    var id: Int? = null,
+    @PrimaryKey
     val strIngredient1: String,
     var inStock: Boolean = false
 )

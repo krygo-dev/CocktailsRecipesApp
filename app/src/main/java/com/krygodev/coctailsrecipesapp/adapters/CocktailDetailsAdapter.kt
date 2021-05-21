@@ -3,15 +3,12 @@ package com.krygodev.coctailsrecipesapp.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.krygodev.coctailsrecipesapp.R
 import com.krygodev.coctailsrecipesapp.data.Cocktail
-import kotlinx.android.synthetic.main.cocktail_details.*
 import kotlinx.android.synthetic.main.cocktail_details.view.*
 
 class CocktailDetailsAdapter : RecyclerView.Adapter<CocktailDetailsAdapter.CocktailDetailsViewHolder>() {
@@ -58,6 +55,7 @@ class CocktailDetailsAdapter : RecyclerView.Adapter<CocktailDetailsAdapter.Cockt
             Glide.with(this).load(cocktail.strDrinkThumb).into(cocktailImageView)
             cocktailNameTextView.text = cocktail.strDrink
             cocktailInstructionTextView.text = cocktail.strInstructions
+            cocktailInFavImageView.setBackgroundResource(R.drawable.ic_favourite)
 
             if (cocktail.strIngredient1 != null) {
                 ingredientName1TextView.text = cocktail.strIngredient1
@@ -166,13 +164,7 @@ class CocktailDetailsAdapter : RecyclerView.Adapter<CocktailDetailsAdapter.Cockt
 
             cocktailInFavImageView.setOnClickListener { view ->
                 onItemClickListener?.let {
-//                    if (view.background == context?.let { ContextCompat.getDrawable(it, R.drawable.ic_favourite) }) {
-//                        view.setBackgroundResource(R.drawable.ic_favourite_full)
-//                        it(cocktail)
-//                    } else {
-//                        view.setBackgroundResource(R.drawable.ic_favourite)
-//                        it(cocktail)
-//                    }
+                    cocktail.inStock = true
                     view.setBackgroundResource(R.drawable.ic_favourite_full)
                     it(cocktail)
                 }
