@@ -3,6 +3,7 @@ package com.krygodev.coctailsrecipesapp.ui.fragments
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
@@ -33,8 +34,10 @@ class CocktailDetailsFragment : Fragment(R.layout.fragment_cocktail_details) {
         viewModel.getCocktailById(cocktailID)
 
         cocktailAdapter.setOnItemClickListener { cocktail ->
-            Log.d(TAG, cocktail.inStock.toString())
-            if (cocktail.inStock) viewModel.insertCocktail(cocktail)
+            if (cocktail.inStock) {
+                viewModel.insertCocktail(cocktail)
+                Toast.makeText(context, "Added to favourites!", Toast.LENGTH_SHORT).show()
+            }
         }
 
         viewModel.cocktails.observe(viewLifecycleOwner, { response ->

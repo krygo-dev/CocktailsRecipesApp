@@ -2,6 +2,7 @@ package com.krygodev.coctailsrecipesapp.ui.fragments
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -25,13 +26,14 @@ class FavouriteCoctailsFragment : Fragment(R.layout.fragment_favourite_coctails)
 
         favouritesAdapter.setOnItemClickListener { cocktail ->
             val bundle = Bundle().apply {
-                putInt("cocktailID", cocktail.idDrink?.toInt()!!)
+                putInt("cocktailID", cocktail.idDrink.toInt())
             }
             findNavController().navigate(R.id.action_favouriteCoctailsFragment_to_cocktailDetailsFragment, bundle)
         }
 
         favouritesAdapter.setOnItemLongClickListener { cocktail ->
             viewModel.deleteCocktail(cocktail)
+            Toast.makeText(context, "Removed from favourites!", Toast.LENGTH_SHORT).show()
         }
 
         viewModel.getFavouritesCocktails().observe(viewLifecycleOwner, { cocktails ->

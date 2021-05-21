@@ -155,8 +155,12 @@ class RandomCocktailAdapter : RecyclerView.Adapter<RandomCocktailAdapter.RandomC
                 tableRow15.visibility = View.GONE
             }
 
-            cocktailInFavImageView.setOnClickListener {
-                onItemClickListener?.let { it(cocktail) }
+            cocktailInFavImageView.setOnClickListener { view ->
+                onItemClickListener?.let {
+                    cocktail.inStock = true
+                    view.setBackgroundResource(R.drawable.ic_favourite_full)
+                    it(cocktail)
+                }
             }
         }
     }

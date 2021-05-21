@@ -5,9 +5,11 @@ import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.krygodev.coctailsrecipesapp.R
 import com.krygodev.coctailsrecipesapp.adapters.IngredientsAdapter
+import com.krygodev.coctailsrecipesapp.data.Ingredient
 import com.krygodev.coctailsrecipesapp.ui.viewmodels.IngredientsViewModel
 import com.krygodev.coctailsrecipesapp.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,8 +29,7 @@ class IngredientsFragment : Fragment(R.layout.fragment_ingredients) {
         setupRecyclerView()
 
         ingredientsAdapter.setOnItemClickListener { ingredient ->
-            ingredient.inStock = !ingredient.inStock
-
+            Log.d(TAG, ingredient.inStock.toString())
             if (ingredient.inStock) {
                 viewModel.insertIngredient(ingredient)
                 ingredientsChipGroup.check(R.id.ingredientsInStockChip)
@@ -60,6 +61,7 @@ class IngredientsFragment : Fragment(R.layout.fragment_ingredients) {
                             Log.d(TAG, "Ingredients successfully loaded!")
                             ingredientsProgressIndicator.visibility = View.INVISIBLE
                             ingredientsAdapter.differ.submitList(ingredientsResponse.drinks)
+                            ingredientsAdapter.inStock = viewModel.ingredientsInStock
                         }
                     }
                     is Resource.Error -> {

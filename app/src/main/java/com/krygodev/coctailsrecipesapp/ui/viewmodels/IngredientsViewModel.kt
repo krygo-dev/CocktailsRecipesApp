@@ -18,7 +18,7 @@ class IngredientsViewModel @Inject constructor(
 ) : ViewModel() {
 
     val ingredients: MutableLiveData<Resource<AllIngredients>> = MutableLiveData()
-    //lateinit var ingredientsInStock: List<Ingredient>
+    var ingredientsInStock: List<Ingredient> = listOf()
 
     init {
         getAllIngredients()
@@ -35,7 +35,7 @@ class IngredientsViewModel @Inject constructor(
     fun getIngredientsFromDatabase() = cocktailsRepository.getIngredientsFromDatabase()
 
     private fun getAllIngredients() = viewModelScope.launch {
-        //ingredientsInStock = cocktailsRepository.getIngredientsList()
+        ingredientsInStock = cocktailsRepository.getIngredientsList()
         ingredients.postValue(Resource.Loading())
         val response = cocktailsRepository.getAllIngredients()
         ingredients.postValue(handleAllIngredientsResponse(response))
@@ -43,12 +43,6 @@ class IngredientsViewModel @Inject constructor(
 
     private fun handleAllIngredientsResponse(response: Response<AllIngredients>): Resource<AllIngredients> {
         if (response.isSuccessful) response.body()?.let { result ->
-//            ingredientsInStock.forEach { ingredient ->
-//                if (result.drinks.contains(ingredient)) {
-//                    result.drinks.toMutableList().remove(ingredient)
-//                }
-//            }
-
             return Resource.Success(result)
         }
         return Resource.Error(response.message())
