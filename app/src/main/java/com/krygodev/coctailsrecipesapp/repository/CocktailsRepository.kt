@@ -37,4 +37,6 @@ class CocktailsRepository @Inject constructor(
     fun getCocktailsFromDatabase() = cocktailDao.getAllCocktails()
 
     suspend fun getIngredientsList() = ingredientDao.getIngredientsList()
+
+    suspend fun getCocktailsList() = cocktailDao.getCocktailsList()
 }

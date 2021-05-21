@@ -30,12 +30,12 @@ class IngredientsFragment : Fragment(R.layout.fragment_ingredients) {
             Log.d(TAG, ingredient.inStock.toString())
             if (ingredient.inStock) {
                 viewModel.insertIngredient(ingredient).invokeOnCompletion {
-                    ingredientsAdapter.inStock = viewModel.ingredientsInStock.toMutableList()
+                    ingredientsAdapter.inStock = viewModel.ingredientsInStock
                 }
                 ingredientsChipGroup.check(R.id.ingredientsInStockChip)
             } else {
                 viewModel.deleteIngredient(ingredient).invokeOnCompletion {
-                    ingredientsAdapter.inStock = viewModel.ingredientsInStock.toMutableList()
+                    ingredientsAdapter.inStock = viewModel.ingredientsInStock
                 }
             }
         }
@@ -64,7 +64,7 @@ class IngredientsFragment : Fragment(R.layout.fragment_ingredients) {
                             Log.d(TAG, "Ingredients successfully loaded!")
                             ingredientsProgressIndicator.visibility = View.INVISIBLE
                             ingredientsAdapter.differ.submitList(ingredientsResponse.drinks)
-                            ingredientsAdapter.inStock = viewModel.ingredientsInStock.toMutableList()
+                            ingredientsAdapter.inStock = viewModel.ingredientsInStock
                         }
                     }
                     is Resource.Error -> {

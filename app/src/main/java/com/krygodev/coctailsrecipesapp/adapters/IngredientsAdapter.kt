@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.card_view_ingredient.view.*
 
 class IngredientsAdapter : RecyclerView.Adapter<IngredientsAdapter.IngredientsViewHolder>() {
 
-    var inStock: MutableList<Ingredient> = mutableListOf()
+    var inStock: List<Ingredient> = listOf()
 
     inner class IngredientsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 
@@ -47,11 +47,14 @@ class IngredientsAdapter : RecyclerView.Adapter<IngredientsAdapter.IngredientsVi
 
     override fun onBindViewHolder(holder: IngredientsViewHolder, position: Int) {
         val ingredient = differ.currentList[position]
+
         Log.d("TAG", inStock.toString())
         ingredient.inStock = inStock.any { ing -> ing.strIngredient1 == ingredient.strIngredient1 }
+
         holder.itemView.apply {
             ingredientNameTextView.text = ingredient.strIngredient1
             ingredientInStockCheckBox.isChecked = ingredient.inStock
+
             ingredientInStockCheckBox.setOnClickListener {
                 onItemClickListener?.let {
                     ingredient.inStock = !ingredient.inStock

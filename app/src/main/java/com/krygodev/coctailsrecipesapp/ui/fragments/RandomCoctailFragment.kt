@@ -3,7 +3,6 @@ package com.krygodev.coctailsrecipesapp.ui.fragments
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,8 +28,15 @@ class RandomCoctailFragment : Fragment(R.layout.fragment_random_coctail) {
 
         randomCocktailAdapter.setOnItemClickListener { cocktail ->
             if (cocktail.inStock) {
-                viewModel.insertCocktail(cocktail)
-                Toast.makeText(context, "Added to favourites!", Toast.LENGTH_SHORT).show()
+                viewModel.insertCocktail(cocktail).invokeOnCompletion {
+                    randomCocktailAdapter.ingInStock = viewModel.ingredientsInStock
+                    randomCocktailAdapter.cocktailsInFav = viewModel.cocktailsInFav
+                }
+            } else {
+                viewModel.deleteCocktail(cocktail).invokeOnCompletion {
+                    randomCocktailAdapter.ingInStock = viewModel.ingredientsInStock
+                    randomCocktailAdapter.cocktailsInFav = viewModel.cocktailsInFav
+                }
             }
         }
 
@@ -41,6 +47,8 @@ class RandomCoctailFragment : Fragment(R.layout.fragment_random_coctail) {
                         Log.d(TAG, "Success")
                         randomCocktailProgressIndicator.visibility = View.INVISIBLE
                         randomCocktailAdapter.differ.submitList(cocktailResponse.drinks)
+                        randomCocktailAdapter.ingInStock = viewModel.ingredientsInStock
+                        randomCocktailAdapter.cocktailsInFav = viewModel.cocktailsInFav
                     }
                 }
                 is Resource.Error -> {
