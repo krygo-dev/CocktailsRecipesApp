@@ -26,10 +26,12 @@ class IngredientsViewModel @Inject constructor(
 
     fun insertIngredient(ingredient: Ingredient) = viewModelScope.launch {
         cocktailsRepository.insertIngredient(ingredient)
+        ingredientsInStock = cocktailsRepository.getIngredientsList()
     }
 
     fun deleteIngredient(ingredient: Ingredient) = viewModelScope.launch {
         cocktailsRepository.deleteIngredient(ingredient)
+        ingredientsInStock = cocktailsRepository.getIngredientsList()
     }
 
     fun getIngredientsFromDatabase() = cocktailsRepository.getIngredientsFromDatabase()

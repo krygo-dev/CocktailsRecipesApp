@@ -15,11 +15,11 @@
         android:layout_centerHorizontal="true">
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/ingredientsNotInStockChip"
+            android:id="@+id/allIngredientsChip"
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="@string/notInStock"
+            android:text="@string/ingredients"
             android:textAlignment="center"
             android:textSize="20sp"
             android:checked="true"/>

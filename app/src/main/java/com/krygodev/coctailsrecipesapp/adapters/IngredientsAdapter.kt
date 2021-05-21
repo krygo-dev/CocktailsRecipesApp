@@ -1,5 +1,6 @@
 package com.krygodev.coctailsrecipesapp.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,9 +11,9 @@ import com.krygodev.coctailsrecipesapp.R
 import com.krygodev.coctailsrecipesapp.data.Ingredient
 import kotlinx.android.synthetic.main.card_view_ingredient.view.*
 
-class IngredientsAdapter() : RecyclerView.Adapter<IngredientsAdapter.IngredientsViewHolder>() {
+class IngredientsAdapter : RecyclerView.Adapter<IngredientsAdapter.IngredientsViewHolder>() {
 
-    var inStock: List<Ingredient> = listOf()
+    var inStock: MutableList<Ingredient> = mutableListOf()
 
     inner class IngredientsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 
@@ -46,9 +47,11 @@ class IngredientsAdapter() : RecyclerView.Adapter<IngredientsAdapter.Ingredients
 
     override fun onBindViewHolder(holder: IngredientsViewHolder, position: Int) {
         val ingredient = differ.currentList[position]
+        Log.d("TAG", inStock.toString())
+        ingredient.inStock = inStock.any { ing -> ing.strIngredient1 == ingredient.strIngredient1 }
         holder.itemView.apply {
             ingredientNameTextView.text = ingredient.strIngredient1
-            ingredientInStockCheckBox.isChecked = inStock.any { ing -> ing.strIngredient1 == ingredient.strIngredient1 }
+            ingredientInStockCheckBox.isChecked = ingredient.inStock
             ingredientInStockCheckBox.setOnClickListener {
                 onItemClickListener?.let {
                     ingredient.inStock = !ingredient.inStock
