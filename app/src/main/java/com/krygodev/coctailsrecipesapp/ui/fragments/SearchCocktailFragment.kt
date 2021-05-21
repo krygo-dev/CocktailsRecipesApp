@@ -1,51 +1,38 @@
 package com.krygodev.coctailsrecipesapp.ui.fragments
 
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.krygodev.coctailsrecipesapp.R
 import com.krygodev.coctailsrecipesapp.adapters.SearchCocktailAdapter
-import com.krygodev.coctailsrecipesapp.ui.activities.StartupActivity
 import com.krygodev.coctailsrecipesapp.ui.viewmodels.SearchCocktailViewModel
-import com.krygodev.coctailsrecipesapp.ui.viewmodelsproviders.SearchCocktailViewModelProviderFactory
 import com.krygodev.coctailsrecipesapp.util.Resource
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_search_cocktail.*
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class SearchCocktailFragment : Fragment() {
+@AndroidEntryPoint
+class SearchCocktailFragment : Fragment(R.layout.fragment_search_cocktail) {
 
-    lateinit var viewModel: SearchCocktailViewModel
-    lateinit var searchAdapter: SearchCocktailAdapter
+    private val viewModel: SearchCocktailViewModel by viewModels()
     private val args: SearchCocktailFragmentArgs by navArgs()
+    private lateinit var searchAdapter: SearchCocktailAdapter
 
     private val TAG = "SearchCocktailFragment"
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_search_cocktail, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val viewModelProviderFactory = SearchCocktailViewModelProviderFactory((activity as StartupActivity).repository)
-        viewModel = ViewModelProvider(this, viewModelProviderFactory).get(SearchCocktailViewModel::class.java)
         setupRecyclerView()
 
         val query = args.query

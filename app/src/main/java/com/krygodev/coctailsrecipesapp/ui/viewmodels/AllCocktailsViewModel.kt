@@ -6,10 +6,13 @@ import androidx.lifecycle.viewModelScope
 import com.krygodev.coctailsrecipesapp.data.AllCocktailsFromCategory
 import com.krygodev.coctailsrecipesapp.repository.CocktailsRepository
 import com.krygodev.coctailsrecipesapp.util.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.Response
+import javax.inject.Inject
 
-class AllCocktailsViewModel(
+@HiltViewModel
+class AllCocktailsViewModel @Inject constructor(
     val cocktailsRepository: CocktailsRepository
 ) : ViewModel() {
 

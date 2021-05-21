@@ -1,7 +1,6 @@
 package com.krygodev.coctailsrecipesapp.util
 
-class Constants {
-    companion object {
-        const val BASE_URL = "https://www.thecocktaildb.com"
-    }
+object Constants {
+    const val BASE_URL = "https://www.thecocktaildb.com"
+    const val COCKTAILS_DATABASE_NAME = "cocktails_db"
 }

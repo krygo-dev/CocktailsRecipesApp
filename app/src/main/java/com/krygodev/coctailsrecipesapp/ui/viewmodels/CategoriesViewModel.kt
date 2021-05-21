@@ -6,10 +6,13 @@ import androidx.lifecycle.viewModelScope
 import com.krygodev.coctailsrecipesapp.data.AllCategories
 import com.krygodev.coctailsrecipesapp.repository.CocktailsRepository
 import com.krygodev.coctailsrecipesapp.util.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.Response
+import javax.inject.Inject
 
-class CategoriesViewModel(
+@HiltViewModel
+class CategoriesViewModel @Inject constructor(
     val cocktailsRepository: CocktailsRepository
 ) : ViewModel() {
 
@@ -19,7 +22,7 @@ class CategoriesViewModel(
         getAllCategories()
     }
 
-    fun getAllCategories() = viewModelScope.launch {
+    private fun getAllCategories() = viewModelScope.launch {
         categories.postValue(Resource.Loading())
         val response = cocktailsRepository.getAllCategories()
         categories.postValue(handleAllCategoriesResponse(response))

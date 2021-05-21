@@ -2,45 +2,29 @@ package com.krygodev.coctailsrecipesapp.ui.fragments
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.krygodev.coctailsrecipesapp.R
 import com.krygodev.coctailsrecipesapp.adapters.CocktailDetailsAdapter
-import com.krygodev.coctailsrecipesapp.ui.activities.StartupActivity
 import com.krygodev.coctailsrecipesapp.ui.viewmodels.CocktailDetailsViewModel
-import com.krygodev.coctailsrecipesapp.ui.viewmodelsproviders.CocktailDetailsViewModelProviderFactory
 import com.krygodev.coctailsrecipesapp.util.Resource
-import kotlinx.android.synthetic.main.cocktail_details.*
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_cocktail_details.*
 
-class CocktailDetailsFragment : Fragment() {
+@AndroidEntryPoint
+class CocktailDetailsFragment : Fragment(R.layout.fragment_cocktail_details) {
 
-    lateinit var viewModel: CocktailDetailsViewModel
-    lateinit var cocktailAdapter: CocktailDetailsAdapter
+    private val viewModel: CocktailDetailsViewModel by viewModels()
     private val args: CocktailDetailsFragmentArgs by navArgs()
+    private lateinit var cocktailAdapter: CocktailDetailsAdapter
 
     private val TAG = "CocktailDetailsFragment"
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_cocktail_details, container, false)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val viewModelProviderFactory = CocktailDetailsViewModelProviderFactory((activity as StartupActivity).repository)
-        viewModel = ViewModelProvider(this, viewModelProviderFactory).get(CocktailDetailsViewModel::class.java)
 
         setupRecyclerView()
 

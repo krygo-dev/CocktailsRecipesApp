@@ -7,10 +7,13 @@ import com.krygodev.coctailsrecipesapp.data.AllCocktails
 import com.krygodev.coctailsrecipesapp.data.Cocktail
 import com.krygodev.coctailsrecipesapp.repository.CocktailsRepository
 import com.krygodev.coctailsrecipesapp.util.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.Response
+import javax.inject.Inject
 
-class RandomViewModel(
+@HiltViewModel
+class RandomViewModel @Inject constructor(
     val cocktailsRepository: CocktailsRepository
 ) : ViewModel(){
 
@@ -24,7 +27,7 @@ class RandomViewModel(
         cocktailsRepository.insertCocktail(cocktail)
     }
 
-    fun getRandomCocktail() = viewModelScope.launch {
+    private fun getRandomCocktail() = viewModelScope.launch {
         cocktails.postValue(Resource.Loading())
         val response = cocktailsRepository.getRandomCocktail()
         cocktails.postValue(handleRandomCocktailResponse(response))

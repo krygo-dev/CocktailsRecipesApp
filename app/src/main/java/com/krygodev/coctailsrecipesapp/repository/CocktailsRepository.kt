@@ -1,37 +1,40 @@
 package com.krygodev.coctailsrecipesapp.repository
 
-import androidx.lifecycle.LiveData
-import com.krygodev.coctailsrecipesapp.api.RetrofitInstance
+import com.krygodev.coctailsrecipesapp.api.CocktailsAPI
 import com.krygodev.coctailsrecipesapp.data.Cocktail
 import com.krygodev.coctailsrecipesapp.data.Ingredient
-import com.krygodev.coctailsrecipesapp.db.CocktailsDatabase
+import com.krygodev.coctailsrecipesapp.db.CocktailDao
+import com.krygodev.coctailsrecipesapp.db.IngredientDao
+import javax.inject.Inject
 
-class CocktailsRepository(
-    val db: CocktailsDatabase
+class CocktailsRepository @Inject constructor(
+    private val cocktailDao: CocktailDao,
+    private val ingredientDao: IngredientDao,
+    private val api: CocktailsAPI
 ) {
-    suspend fun getAllCategories() = RetrofitInstance.api.getAllCategories()
+    suspend fun getAllCategories() = api.getAllCategories()
 
-    suspend fun getCocktailsFromCategory(category: String) = RetrofitInstance.api.getCocktailsFromCategory(category)
+    suspend fun getCocktailsFromCategory(category: String) = api.getCocktailsFromCategory(category)
 
-    suspend fun getRandomCocktail() = RetrofitInstance.api.getRandomCocktail()
+    suspend fun getRandomCocktail() = api.getRandomCocktail()
 
-    suspend fun getCocktailById(id: Int) = RetrofitInstance.api.getCocktailByID(id)
+    suspend fun getCocktailById(id: Int) = api.getCocktailByID(id)
 
-    suspend fun getCocktailByName(name: String) = RetrofitInstance.api.getCocktailByName(name)
+    suspend fun getCocktailByName(name: String) = api.getCocktailByName(name)
 
-    suspend fun getAllIngredients() = RetrofitInstance.api.getAllIngredients()
+    suspend fun getAllIngredients() = api.getAllIngredients()
 
-    suspend fun insertIngredient(ingredient: Ingredient) = db.getIngredientDao().insert(ingredient)
+    suspend fun insertIngredient(ingredient: Ingredient) = ingredientDao.insert(ingredient)
 
-    suspend fun deleteIngredient(ingredient: Ingredient) = db.getIngredientDao().delete(ingredient)
+    suspend fun deleteIngredient(ingredient: Ingredient) = ingredientDao.delete(ingredient)
 
-    fun getIngredientsFromDatabase() = db.getIngredientDao().getAllIngredients()
+    fun getIngredientsFromDatabase() = ingredientDao.getAllIngredients()
 
-    suspend fun insertCocktail(cocktail: Cocktail) = db.getCocktailDao().insert(cocktail)
+    suspend fun insertCocktail(cocktail: Cocktail) = cocktailDao.insert(cocktail)
 
-    suspend fun deleteCocktail(cocktail: Cocktail) = db.getCocktailDao().delete(cocktail)
+    suspend fun deleteCocktail(cocktail: Cocktail) = cocktailDao.delete(cocktail)
 
-    fun getCocktailsFromDatabase() = db.getCocktailDao().getAllCocktails()
+    fun getCocktailsFromDatabase() = cocktailDao.getAllCocktails()
 
-    //suspend fun getIngredientsList() = db.getIngredientDao().getIngredientsList()
+    //suspend fun getIngredientsList() = ingredientDao.getIngredientsList()
 }

@@ -2,41 +2,31 @@ package com.krygodev.coctailsrecipesapp.ui.fragments
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.krygodev.coctailsrecipesapp.R
 import com.krygodev.coctailsrecipesapp.adapters.CategoryAdapter
-import com.krygodev.coctailsrecipesapp.ui.activities.StartupActivity
 import com.krygodev.coctailsrecipesapp.ui.viewmodels.CategoriesViewModel
-import com.krygodev.coctailsrecipesapp.ui.viewmodelsproviders.CategoriesViewModelProviderFactory
 import com.krygodev.coctailsrecipesapp.util.Resource
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_categories.*
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class CategoriesFragment : Fragment() {
+@AndroidEntryPoint
+class CategoriesFragment : Fragment(R.layout.fragment_categories) {
 
-    lateinit var viewModel: CategoriesViewModel
-    lateinit var categoryAdapter: CategoryAdapter
+    private val viewModel: CategoriesViewModel by viewModels()
+    private lateinit var categoryAdapter: CategoryAdapter
 
     private val TAG = "CategoriesFragment"
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_categories, container, false)
-    }
 
     override fun onResume() {
         super.onResume()
@@ -46,8 +36,6 @@ class CategoriesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val viewModelProviderFactory = CategoriesViewModelProviderFactory((activity as StartupActivity).repository)
-        viewModel = ViewModelProvider(this, viewModelProviderFactory).get(CategoriesViewModel::class.java)
         setupRecyclerView()
 
         categoryAdapter.setOnItemClickListener { category ->
