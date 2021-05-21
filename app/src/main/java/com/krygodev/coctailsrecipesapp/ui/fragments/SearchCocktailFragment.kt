@@ -41,7 +41,7 @@ class SearchCocktailFragment : Fragment(R.layout.fragment_search_cocktail) {
 
         searchAdapter.setOnItemClickListener { cocktail ->
             val bundle = Bundle().apply {
-                putInt("cocktailID", cocktail.idDrink.toInt())
+                putInt("cocktailID", cocktail.idDrink?.toInt()!!)
             }
             findNavController().navigate(R.id.action_searchCocktailFragment_to_cocktailDetailsFragment, bundle)
         }

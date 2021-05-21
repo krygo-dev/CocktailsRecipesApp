@@ -25,7 +25,7 @@ class FavouriteCoctailsFragment : Fragment(R.layout.fragment_favourite_coctails)
 
         favouritesAdapter.setOnItemClickListener { cocktail ->
             val bundle = Bundle().apply {
-                putInt("cocktailID", cocktail.idDrink.toInt())
+                putInt("cocktailID", cocktail.idDrink?.toInt()!!)
             }
             findNavController().navigate(R.id.action_favouriteCoctailsFragment_to_cocktailDetailsFragment, bundle)
         }

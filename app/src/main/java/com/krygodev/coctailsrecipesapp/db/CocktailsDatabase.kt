@@ -7,7 +7,7 @@ import com.krygodev.coctailsrecipesapp.data.Ingredient
 
 @Database(
     entities = [Cocktail::class, Ingredient::class],
-    version = 1,
+    version = 2,
     exportSchema = false,
 )
 abstract class CocktailsDatabase : RoomDatabase() {

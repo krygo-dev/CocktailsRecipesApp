@@ -27,7 +27,7 @@ object AppModule {
         app,
         CocktailsDatabase::class.java,
         COCKTAILS_DATABASE_NAME
-    ).build()
+    ).fallbackToDestructiveMigration().build()
 
     @Singleton
     @Provides
