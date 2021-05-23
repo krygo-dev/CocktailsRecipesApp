@@ -68,8 +68,6 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories) {
 
         var job: Job? = null
         categoriesSearchView.apply {
-            onActionViewExpanded()
-            clearFocus()
             imeOptions = EditorInfo.IME_ACTION_SEARCH
             setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
@@ -80,6 +78,7 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories) {
                     job?.cancel()
                     job = MainScope().launch {
                         delay(500L)
+                        if (query.isNullOrEmpty()) categoriesSearchView.isIconified = true
                         query?.let {
                             if (query.isNotEmpty()) {
                                 val bundle = Bundle().apply {

@@ -4,14 +4,26 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/logoImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_logo"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp" />
+
     <SearchView
         android:id="@+id/categoriesSearchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:queryHint="@string/search"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginTop="20dp" />
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="10dp"
+        android:searchIcon="@drawable/ic_search"
+        android:iconifiedByDefault="true"
+        android:layoutDirection="rtl"
+        android:layout_toEndOf="@id/logoImageView"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/categoriesRecyclerView"
@@ -20,8 +32,7 @@
         android:layout_below="@id/categoriesSearchView"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginTop="20dp"
-        android:padding="10dp"/>
+        android:layout_marginTop="15dp"/>
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/categoriesProgressIndicator"

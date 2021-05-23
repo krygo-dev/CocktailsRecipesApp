@@ -60,6 +60,10 @@ class AllCocktailsFragment : Fragment(R.layout.fragment_all_coctails) {
                 }
             }
         })
+
+        allCocktailsBackImageView.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     private fun setupRecyclerView() {

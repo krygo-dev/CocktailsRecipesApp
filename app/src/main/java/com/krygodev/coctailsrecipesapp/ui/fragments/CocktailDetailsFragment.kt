@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
@@ -71,6 +72,10 @@ class CocktailDetailsFragment : Fragment(R.layout.fragment_cocktail_details) {
                 }
             }
         })
+
+        cocktailDetailsBackImageView.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
     }
 
